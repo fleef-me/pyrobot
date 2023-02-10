@@ -69,8 +69,7 @@ async def limit_symbols_message(
     if len(text.replace(" ", "")) <= 700:
         if reply:
             return await message.reply(text, disable_web_page_preview=True)
-        else:
-            return await message.edit(text, disable_web_page_preview=True)
+        return await message.edit(text, disable_web_page_preview=True)
 
     image_path = settings.IMAGE_LIMITER_PATH
     html_path = settings.HTML_LIMITER_PATH
