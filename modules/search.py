@@ -64,7 +64,7 @@ class Model(BaseModel):
 async def request(session: AsyncClient, query: str, count_results: int = 3, engine: str = "duckduckgo"):
     if engine not in engines:
         raise RuntimeError("This engine is not found")
-    
+
     if not query:
         raise RuntimeError("Specify a request")
 
