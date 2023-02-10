@@ -34,8 +34,6 @@ To run the script, use the following command:
 import sqlite3
 import re
 from typing import Union
-
-from urllib import parse
 from hashids import Hashids
 
 from config import get_env, Settings
