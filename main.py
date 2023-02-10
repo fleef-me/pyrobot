@@ -7,19 +7,6 @@
 
 # Python-Requires:
 #   >=3.8
-# Install-Requires:
-#   orm[sqlite]
-#   yarl
-#   anyio
-#   attrs
-#   httpx
-#   uvloop
-#   aiocache
-#   tgcrypto
-#   Pyrogram
-#   aiorwlock
-#   databases
-#   python-dotenv
 
 import sys
 import shlex

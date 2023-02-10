@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 # Copyright 2022 Andrew Ivanov <okolefleef@disr.it>
 # All rights reserved
@@ -35,7 +34,6 @@ import sqlite3
 import re
 from typing import Union
 
-from urllib import parse
 from hashids import Hashids
 
 from config import get_env, Settings

@@ -13,40 +13,8 @@ the get_disk_info function in disk_info.so.
 """
 
 
-# import ctypes
 from enum import Enum
 
-#
-# class CPUInfo(ctypes.Structure):
-#     """Structure for CPU information."""
-#
-#     _fields_ = [
-#         ("processor", ctypes.c_char * 128),
-#         ("cores", ctypes.c_int),
-#         ("frequency", ctypes.c_float),
-#         ("total", ctypes.c_float),
-#         ("per_core", ctypes.c_float * 128),
-#     ]
-#
-#
-# class MemoryInfo(ctypes.Structure):
-#     _fields_ = [
-#         ("total", ctypes.c_ulonglong),
-#         ("available", ctypes.c_ulonglong),
-#         ("used", ctypes.c_ulonglong),
-#         ("percentage", ctypes.c_float)
-#     ]
-#
-#
-# class DiskInfo(ctypes.Structure):
-#     _fields_ = [
-#         ("mountpoint", ctypes.c_char * 1024),
-#         ("type", ctypes.c_char * 1024),
-#         ("total", ctypes.c_char * 1024),
-#         ("used", ctypes.c_char * 1024),
-#         ("free", ctypes.c_char * 1024),
-#         ("percentage", ctypes.c_char * 1024)
-#     ]
 
 class Commands(str, Enum):
     test = "ping"  # Used to check if a host is reachable

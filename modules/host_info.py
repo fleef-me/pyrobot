@@ -3,8 +3,6 @@
 # Copyright 2022 Andrew Ivanov <okolefleef@disr.it>
 # All rights reserved
 
-import ctypes
-
 import arrow
 import psutil
 
