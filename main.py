@@ -55,7 +55,6 @@ from utils import Commands
 from modules import (dd_message, host_info, limit_symbols, module_site, pretty_json, search, translate, tts, weather)
 
 
-
 @mutable(eq=False)
 class OrderLock:
     deep = field(kw_only=True, default=False)
@@ -163,99 +162,6 @@ class OrderLock:
     def _depth(self, /, value):
         self.__depth_var.set(value)
 
-
-# @frozen(eq=False)
-# class OpenAI:
-#     available_tokens = 9_000_000
-#
-#     storage = field()
-#     url = field(kw_only=True, converter=URL, default=URL("https://api.openai.com/v1"))
-#     api_key = field(kw_only=True)
-#     rps = field(init=False, repr=False)
-#     http = field(init=False, repr=False)
-#     lock = field(init=False, repr=False, factory=Lock)
-#
-#     @rps.default
-#     def _(self, /):
-#         return RPSSemaphore(20, width=60)
-#
-#     @http.default
-#     def _(self, /):
-#         return AsyncClient(
-#             transport=AsyncHTTPTransport(retries=1),
-#             timeout=Timeout(180, connect=300, pool=None),
-#             headers={
-#                 'Authorization': f"Bearer {self.api_key}"
-#             },
-#         )
-#
-#     async def __aenter__(self, /):
-#         await self.http.__aenter__()
-#
-#         return self
-#
-#     async def __aexit__(self, /, exc_type, exc_value, traceback):
-#         return await self.http.__aexit__(exc_type, exc_value, traceback)
-#
-#     async def request(self, path, /, **params):
-#         async with self.rps:
-#             response = await self.http.post(str(self.url / path), json=params)
-#             response.raise_for_status()
-#
-#             return response.json()
-#
-#     async def generate_completion(self, /, prompt, **params):
-#         now = datetime.now()
-#
-#         async with self.lock:
-#             start = await self.storage.setdefault('openai.start', now)
-#             used_tokens = await self.storage.setdefault('openai.used_tokens', 0)
-#
-#             if start.year != now.year or start.month != now.month:
-#                 start = now.replace(
-#                     day=1,
-#                     hour=0,
-#                     minute=0,
-#                     second=0,
-#                     microsecond=0,
-#                 )
-#
-#                 await self.storage.set('openai.start', start)
-#
-#                 used_tokens = 0
-#                 await self.storage.set('openai.used_tokens', used_tokens)
-#
-#         delta = (now - start)
-#
-#         seconds = (delta.days * 24 * 60 * 60) + delta.seconds
-#         microseconds = seconds * 1000 * 1000 + delta.microseconds
-#
-#         days_in_month = calendar.monthrange(now.year, now.month)[1]
-#         microseconds_in_month = days_in_month * 24 * 60 * 60 * 1000 * 1000
-#
-#         tokens_per_microsecond = self.available_tokens / microseconds_in_month
-#
-#         limit = min(
-#             int(microseconds * tokens_per_microsecond - used_tokens),
-#             2600,
-#         )
-#
-#         answer = await self.request('completions', **{
-#             'model': 'text-davinci-003',
-#             'prompt': prompt,
-#             'max_tokens': limit,
-#             'temperature': 0.7,
-#             **params,
-#         })
-#
-#         async with self.lock:
-#             used_tokens = await self.storage.get('openai.used_tokens')
-#             used_tokens += answer['usage']['completion_tokens']
-#
-#             await self.storage.set('openai.used_tokens', used_tokens)
-#
-#         return answer
-#
 
 class Capturing(list):
     """
@@ -717,6 +623,7 @@ class CommandHandler:
 
         await self.message.delete()
         await self.client.send_photo(chat_id=message.chat.id, photo=binary_image, caption=caption_screen)
+
     #
     # async def rewrite_code(self) -> None:
     #     await self.orders.wait()
@@ -974,25 +881,3 @@ def main():
 
 if __name__ == '__main__':
     sys.exit(main())
-
-#
-# async def main():
-#     api_key = r""
-#
-#     async with Storage(URL('sqlite:').with_path('///openai.sqlite')) as storage:
-#         openai = OpenAI(storage, api_key=api_key)
-#         response = await openai.generate_completion(prompt="PING?")
-#         print(response.get("choices", "error")[0].get("text"))
-#
-#     # openai = OpenAI(Storage(URL('sqlite:').with_path('///openai.sqlite')), api_key=api_key)
-#     # print(openai)
-#     # response = await openai.generate_completion(prompt="PING?")
-#     # print(response)
-#
-# #     async with Storage(URL('sqlite:').with_path('///db.sqlite')) as storage:
-# #         await storage.setdefault(42, 23)
-# #
-# #         print(await storage.get(42))
-#
-# if __name__ == "__main__":
-#     anyio.run(main)
