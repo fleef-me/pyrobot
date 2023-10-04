@@ -21,7 +21,7 @@ openai==0.25.0
 openpyxl==3.0.10 ; python_version >= '3.6'
 pandas==1.5.3 ; python_version >= '3.8'
 pandas-stubs==1.5.2.230105 ; python_version < '3.12' and python_version >= '3.8'
-pillow==9.4.0
+pillow==10.0.1
 playwright==1.29.1
 pony==0.7.16
 psutil==5.9.4
