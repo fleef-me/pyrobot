@@ -25,7 +25,7 @@ setup(
         "py_cpuinfo == 9.0.0",
         "pydantic == 1.10.4",
         "Pyrogram == 2.0.97",
-        "setuptools == 65.7.0",
+        "setuptools == 70.0.0",
         "Telethon == 1.26.1",
         "torch == 1.13.1",
         "torchaudio == 0.13.1",
