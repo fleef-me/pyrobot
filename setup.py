@@ -27,7 +27,7 @@ setup(
         "Pyrogram == 2.0.97",
         "setuptools == 65.7.0",
         "Telethon == 1.26.1",
-        "torch == 1.13.1",
+        "torch == 2.2.0",
         "torchaudio == 0.13.1",
         "transliterate == 1.10.2",
         "urllib3 == 1.26.14",
