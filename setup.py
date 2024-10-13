@@ -32,7 +32,7 @@ setup(
         "transliterate == 1.10.2",
         "urllib3 == 1.26.14",
         "openai == 0.25.0",
-        "urllib3==1.26.13",
+        "urllib3==1.26.19",
     ],
     classifiers=[
         "Programming Language :: Python :: 3.8",
