@@ -18,7 +18,7 @@ setup(
         "httpx == 0.23.3",
         "lxml == 4.9.2",
         "Markdown == 3.4.1",
-        "Pillow == 9.4.0",
+        "Pillow == 10.0.1",
         "playwright == 1.29.1",
         "pony == 0.7.16",
         "psutil == 5.9.4",
